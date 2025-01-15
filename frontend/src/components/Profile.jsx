@@ -2,6 +2,8 @@ import { useState } from 'react'
 import Task from './Task'
 import '../App.css'
 const Profile = ()=>{
+    const [newTitle,setNewTitle] = useState("")
+    const [newDetails,setNewDetails] = useState("")
     const [tasks,setTasks] = useState([
         {
             _id: "67863147d551f3e69ce2c930",
@@ -25,13 +27,21 @@ const Profile = ()=>{
             __v: 0
         },
         {
-            _id: "67863163d551f3e69ce2c934",
+            _id: "67863163d551f3e69ce2c94",
             title: "test3",
             details: "This is a test task 4",
             user_id: "678630d3d551f3e69ce2c9c",
             __v: 0
         }
     ])
+    let i=0
+    const addTask = (e)=>{
+      e.preventDefault()
+      setTasks(()=>{
+        i++;
+        return [...tasks,{title:newTitle,details:newTitle,_id:`id${i}`}]
+      })
+    }
     return(
         <div>
           <header className='header'>
@@ -41,10 +51,10 @@ const Profile = ()=>{
             <h3 className='head-title'>Task Manager</h3>
             <button className='logout'>Logout</button>
           </header>
-          <form className="new-task">
-            <input placeholder='title here' type="text" name="title" id="title" />
-            <textarea placeholder='details here...' name="details" id="details"></textarea>
-            <button className='task-submit' type="submit">Add Task</button>
+          <form className="new-task" >
+            <input placeholder='title here' onChange={(e)=>setNewTitle(e.target.value)} type="text" value={newTitle} name="title" id="title" />
+            <textarea placeholder='details here...' onChange={(e)=>setNewDetails(e.target.value)} name="details" value={newDetails} id="details"></textarea>
+            <button className='task-submit' onClick={addTask} type="submit">Add Task</button>
           </form>
             <div className='tasks'>
             {
