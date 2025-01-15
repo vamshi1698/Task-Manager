@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+html,body{
+  background: #FFF;
+}
+
+*{
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+
+.header > *{
+  font-family: "Roboto Flex";
+}
+.header > h3{
+  font-size: 2rem;
+}
+.new-task{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  margin: auto 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  gap: 1em;
+  background: rgba(2, 68, 88, 0.433);
+}
+
+.logo{
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.logo > img{
+  padding: 0.5rem;
+  width: 100%;
+  position: absolute;
+  object-fit:cover;
+  border-radius: 50%;
+}
+
+#title,#details{
+  background: #DBE2EF;
+  padding: 1em 0.5em;
+}
+#title{
+  border-radius: 8px 0 0 8px;
+}
+.logout{
+  color: red;
+  font-family: "Inter";
+  font-weight: 800;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid grey;
+}
+#title::placeholder{
+  color: #0e6f67;
+}
+#details{
+  min-width: 50%;
+  resize: none;
+}
+.task-submit{
+  border-radius: 0 8px 8px 0;
+}
+.header{
+  color: #794c12;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  padding:0.5rem 1rem;
+}
+
+.task{
+  font-family: "Inter";
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: #dbaf75;
+  color: #3A3A36;
+  margin: 1rem;
+  padding: 1rem 0;
+  border-radius: 8px;
+}
+
+.tasks{
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1rem;
+  text-align: start;
+}
+.task-submit{
+  background: #5C9967;
+  color: #FFF;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.task-title{
+  font-family: "Jost";
+}
+.task > *{
+  color: #064236;
+}
+
+
+@media only screen and (max-width:550px) {
+  .new-task{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .header  {
+    padding-top: 0;
+    padding-bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr 5fr 2fr;
+  }
+  .task-submit{
+    padding: 0.5rem;
+  }
+  #title,#details{
+    font-family: "Inter";
+    font-size: 1.1rem;
+  }
+  .header > h3{
+    text-wrap: nowrap;
+    font-size: 1.3rem;
+  }
+  .header > button{
+    font-size: 1rem;
+  }
+  .logout{
+    padding: 0.5rem;
+    border-radius: 8px;
+  }
+  .logo >  img{
+    padding: 1.2rem;
+  }
+}
