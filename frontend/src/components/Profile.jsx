@@ -39,8 +39,10 @@ const Profile = ()=>{
       e.preventDefault()
       setTasks(()=>{
         i++;
-        return [...tasks,{title:newTitle,details:newTitle,_id:`id${i}`}]
+        return [...tasks,{title:newTitle,details:newDetails,_id:`id${i}`}]
       })
+      setNewTitle("")
+      setNewDetails("")
     }
     return(
         <div>
