@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
-html,body{
-  background: #FFF;
-}
-
 *{
   margin: 0;
   border: 0;
@@ -26,7 +22,7 @@ html,body{
   padding: 1rem;
   border-radius: 8px;
   gap: 1em;
-  background: rgba(2, 68, 88, 0.433);
+  background: rgba(32, 84, 100, 0.433);
 }
 
 .logo{
@@ -57,9 +53,6 @@ html,body{
   padding: 1rem;
   border-radius: 12px;
   border: 1px solid grey;
-}
-#title::placeholder{
-  color: #0e6f67;
 }
 #details{
   min-width: 50%;
@@ -107,7 +100,7 @@ html,body{
   font-family: "Jost";
 }
 .task > *{
-  color: #064236;
+  color: #202222;
 }
 
 

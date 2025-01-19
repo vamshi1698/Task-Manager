@@ -35,7 +35,7 @@ exports.login =async (req,res)=>{
         if(userData){
             const token = jwt.sign({ id: userData._id }, process.env.SECRETE_KEY)
             res.cookie('token',token)
-            return res.status(201).json(token)
+            return res.status(200).json(token)
         }
     }catch(e){
         return res.status(403).json(e.message)
