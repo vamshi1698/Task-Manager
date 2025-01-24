@@ -14,7 +14,6 @@ exports.verifyToken =async (req,res,next)=>{
     }catch(e){
         return res.status(403).json({error:"Invalid token",message:e.message})
     }
-
 }
 
 exports.validateUser = async(req,res,next)=>{

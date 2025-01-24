@@ -13,7 +13,8 @@ const Login = ()=>{
             body: JSON.stringify({
                 "username":username,
                 "password":password
-            })
+            }),
+            credentials: 'include'
         })
         if(response){
             const data =await response.json()

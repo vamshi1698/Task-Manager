@@ -1,49 +1,60 @@
-import { useState } from 'react'
+import { useEffect,useState } from 'react'
 import Task from './Task'
 import '../App.css'
 const Profile = ()=>{
     const [newTitle,setNewTitle] = useState("")
     const [newDetails,setNewDetails] = useState("")
-    const [tasks,setTasks] = useState([
-        {
-            _id: "67863147d551f3e69ce2c930",
-            title: "test",
-            details: "This is a test task 1",
-            user_id: "678630d3d551f3e69ce2c92c",
-            __v: 0
-        },
-        {
-            _id: "67863157d551f3e69ce2c932",
-            title: "test1",
-            details: "This is a test task 2",
-            user_id: "678630d3d551f3e69ce2c92c",
-            __v: 0
-        },
-        {
-            _id: "67863163d551f3e69ce2c934",
-            title: "test2",
-            details: "This is a test task 3",
-            user_id: "678630d3d551f3e69ce2c92c",
-            __v: 0
-        },
-        {
-            _id: "67863163d551f3e69ce2c94",
-            title: "test3",
-            details: "This is a test task 4",
-            user_id: "678630d3d551f3e69ce2c9c",
-            __v: 0
+    const [tasks,setTasks] = useState([])
+
+    useEffect(()=>{
+      const fetchTasks =async()=>{
+        try{
+          const response = await fetch("http://localhost:3000/api/alltasks",{
+            method: 'GET',
+            credentials: 'include'
+          })
+            const data = await response.json()
+            setTasks(data)
+            console.log(data)
         }
-    ])
+        catch(e){
+          console.log(e)
+        }
+      }
+      fetchTasks()
+      },[])
+
+
+
     let i=0
-    const addTask = (e)=>{
+    const addTask = async(e)=>{
       e.preventDefault()
-      setTasks(()=>{
-        i++;
-        return [...tasks,{title:newTitle,details:newDetails,_id:`id${i}`}]
-      })
-      setNewTitle("")
-      setNewDetails("")
-    }
+      try{
+        const response = await fetch("http://localhost:3000/api/createtask",{
+          method: 'POST',
+          credentials: 'include',
+          headers:{
+            "content-type":"application/json"
+          },
+          body:JSON.stringify({
+            "title":newTitle,
+            "details":newDetails
+          })
+        })
+          const data = await response.json()
+          console.log(data)
+        }
+        catch(e){
+          console.log(e)
+        }
+        setTasks(()=>{
+          i++;
+          return [...tasks,{title:newTitle,details:newDetails,_id:`id${i}`}]
+        })
+        setNewTitle("")
+        setNewDetails("")
+      }
+    
     return(
         <div>
           <header className='header'>
@@ -60,8 +71,8 @@ const Profile = ()=>{
           </form>
             <div className='tasks'>
             {
-                tasks.map((t)=>{
-                    return  <Task key={t._id} task={t} />
+                tasks.map((task)=>{
+                    return  <Task key={task._id} task={task} />
                 })
             }
             </div>
