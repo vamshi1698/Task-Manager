@@ -19,15 +19,20 @@ const Login = ()=>{
         if(response){
             const data =await response.json()
             console.log(data)
+            location.reload()
         }
     }
     return(
         <div className='login-div'>
-            <form className="login">
-                <h3 className="login-h3">Login</h3>
-                <input type="text" value={username} name="username" onChange={(e)=>setUsername(e.target.value)} id="username" placeholder='username' />
-                <input type="password" value={password} name="password" onChange={(e)=>setPassword(e.target.value)} id="password" placeholder='password' />
-                <button onClick={trylogin} type="submit">Login</button>
+            <form >
+                <span className="login">
+                    <span className="login-h3">Login</span>
+                    <input type="text" value={username} name="username" onChange={(e)=>setUsername(e.target.value)} id="username" placeholder='username' />
+                    <input type="password" value={password} name="password" onChange={(e)=>setPassword(e.target.value)} id="password" placeholder='password' />
+                    <button onClick={trylogin} type="submit">Login</button>
+                    <div>
+                    </div>
+                </span>
             </form>
         </div>
     )

@@ -1,6 +1,7 @@
 import { useEffect,useState } from 'react'
 import Task from './Task'
 import '../App.css'
+import Cookies from 'js-cookie' 
 const Profile = ()=>{
     const [newTitle,setNewTitle] = useState("")
     const [newDetails,setNewDetails] = useState("")
@@ -23,7 +24,10 @@ const Profile = ()=>{
       }
       fetchTasks()
       },[])
-
+    const logout = ()=>{
+      Cookies.remove('token')
+      location.reload()
+    }
 
 
     let i=0
@@ -62,7 +66,7 @@ const Profile = ()=>{
               <img src="https://yt3.ggpht.com/qo6-RFGqK3U1e4XApf4SPVovRY0zr0Dm6gfjZgkveoj_yhA45iWwnh8r2i4a-kGrte1n8crDE-E=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="" />
             </div>
             <h3 className='head-title'>Task Manager</h3>
-            <button className='logout'>Logout</button>
+            <button className='logout' onClick={logout}>Logout</button>
           </header>
           <form className="new-task" >
             <input placeholder='title here' onChange={(e)=>setNewTitle(e.target.value)} type="text" value={newTitle} name="title" id="title" />
@@ -71,9 +75,9 @@ const Profile = ()=>{
           </form>
             <div className='tasks'>
             {
-                tasks.map((task)=>{
-                    return  <Task key={task._id} task={task} />
-                })
+              tasks.length > 0 ?  tasks.map((task)=>{
+                    return  <Task setNewDetails={setNewDetails} setNewTitle={setNewTitle} key={task._id} task={task} />
+                }) : ""
             }
             </div>
         </div>
