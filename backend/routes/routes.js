@@ -21,6 +21,6 @@ router.get('/api/alltasks',verifyToken,getAllTasks)
 router.put('/api/edit',verifyToken,updateTask)
 
 //delete a task
-router.delete('/api/delete',verifyToken,deleteTask)
+router.delete('/api/deleteTask',verifyToken,deleteTask)
 
 exports.router  = router

@@ -30,11 +30,10 @@ const Profile = ()=>{
     }
 
 
-    let i=0
     const addTask = async(e)=>{
       e.preventDefault()
       try{
-        const response = await fetch("http://localhost:3000/api/createtask",{
+        const response = await fetch(`http://localhost:3000/api/createtask`,{
           method: 'POST',
           credentials: 'include',
           headers:{
@@ -47,14 +46,14 @@ const Profile = ()=>{
         })
           const data = await response.json()
           console.log(data)
+          setTasks(()=>{
+            return [...tasks,data]
+          })
+
         }
         catch(e){
           console.log(e)
         }
-        setTasks(()=>{
-          i++;
-          return [...tasks,{title:newTitle,details:newDetails,_id:`id${i}`}]
-        })
         setNewTitle("")
         setNewDetails("")
       }
@@ -76,7 +75,7 @@ const Profile = ()=>{
             <div className='tasks'>
             {
               tasks.length > 0 ?  tasks.map((task)=>{
-                    return  <Task setNewDetails={setNewDetails} setNewTitle={setNewTitle} key={task._id} task={task} />
+                    return  <Task setNewDetails={setNewDetails} tasks={tasks} setTasks={setTasks} setNewTitle={setNewTitle} key={task._id} task={task} />
                 }) : ""
             }
             </div>
