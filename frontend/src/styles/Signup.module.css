@@ -1,10 +1,12 @@
-
-.login-h3{
-  font-family: "Inter";
-  font-weight: 600;
-  color: #4044ED;
+.container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #27262C; 
+    color: white;
 }
-.login{
+.signup{
+    background: rgba(27, 25, 25, 0.2);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -21,21 +23,4 @@
     border:1px solid rgba(255, 255, 255, 0.18);
     border-radius: 8px;
     backdrop-filter: blur(20px);
-  }
-  .login > *{
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    color: rgb(255, 255, 255);
-    
-  }
-  .login-h3{
-    color: #FFF;
-  }
-  .login > button{
-    width: 100%;
-    background: #4044ED;
-  }
-  .login > input{
-    background: transparent;
-    border-bottom: 1px solid #383834;
-  }
+}

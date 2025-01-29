@@ -1,12 +1,14 @@
 import { useEffect,useState } from 'react'
+import {Navigate} from 'react-router-dom'
 import Task from './Task'
 import '../App.css'
 import Cookies from 'js-cookie' 
+import Login from './Login'
 const Profile = ()=>{
     const [newTitle,setNewTitle] = useState("")
     const [newDetails,setNewDetails] = useState("")
     const [tasks,setTasks] = useState([])
-
+    const [isLoggedIn,setIsLoggedIn] = useState(true)
     useEffect(()=>{
       const fetchTasks =async()=>{
         try{
@@ -15,10 +17,14 @@ const Profile = ()=>{
             credentials: 'include'
           })
             const data = await response.json()
-            setTasks(data)
-            console.log(data)
-        }
-        catch(e){
+            if(data){
+              setTasks(data)
+            }
+            else{
+              console.log(data)
+            }
+          }
+          catch(e){
           console.log(e)
         }
       }
@@ -28,10 +34,12 @@ const Profile = ()=>{
       Cookies.remove('token')
       location.reload()
     }
-
-
+    if(!isLoggedIn){
+      return <Navigate to='/login' replace />
+    }
     const addTask = async(e)=>{
       e.preventDefault()
+      if(!newTitle || !newDetails)return;
       try{
         const response = await fetch(`http://localhost:3000/api/createtask`,{
           method: 'POST',
@@ -57,7 +65,7 @@ const Profile = ()=>{
         setNewTitle("")
         setNewDetails("")
       }
-    
+
     return(
         <div>
           <header className='header'>
@@ -76,7 +84,7 @@ const Profile = ()=>{
             {
               tasks.length > 0 ?  tasks.map((task)=>{
                     return  <Task setNewDetails={setNewDetails} tasks={tasks} setTasks={setTasks} setNewTitle={setNewTitle} key={task._id} task={task} />
-                }) : ""
+                }) : <div className='no-tasks'>No tasks</div>
             }
             </div>
         </div>

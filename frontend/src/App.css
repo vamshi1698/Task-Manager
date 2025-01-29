@@ -24,7 +24,6 @@
   gap: 1em;
   background: rgba(32, 84, 100, 0.433);
 }
-
 .logo{
   position: relative;
   width: 100px;
@@ -38,7 +37,10 @@
   object-fit:cover;
   border-radius: 50%;
 }
-
+.login-div,html{
+  background: #27262C;
+  border-radius: 50%;
+}
 #title,#details{
   background: #DBE2EF;
   padding: 1em 0.5em;
