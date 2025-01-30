@@ -1,14 +1,17 @@
-import { useEffect,useState } from 'react'
+import { useEffect,useRef,useState } from 'react'
 import {Navigate} from 'react-router-dom'
 import Task from './Task'
 import '../App.css'
 import Cookies from 'js-cookie' 
 import Login from './Login'
 const Profile = ()=>{
+    const [isLoggedIn,setIsLoggedIn] = useState(true)
+    if(!isLoggedIn){
+      return <Navigate to='/login' replace />
+    }
     const [newTitle,setNewTitle] = useState("")
     const [newDetails,setNewDetails] = useState("")
     const [tasks,setTasks] = useState([])
-    const [isLoggedIn,setIsLoggedIn] = useState(true)
     useEffect(()=>{
       const fetchTasks =async()=>{
         try{
@@ -33,9 +36,6 @@ const Profile = ()=>{
     const logout = ()=>{
       Cookies.remove('token')
       location.reload()
-    }
-    if(!isLoggedIn){
-      return <Navigate to='/login' replace />
     }
     const addTask = async(e)=>{
       e.preventDefault()
@@ -83,7 +83,7 @@ const Profile = ()=>{
             <div className='tasks'>
             {
               tasks.length > 0 ?  tasks.map((task)=>{
-                    return  <Task setNewDetails={setNewDetails} tasks={tasks} setTasks={setTasks} setNewTitle={setNewTitle} key={task._id} task={task} />
+                    return  <Task  tasks={tasks} setTasks={setTasks} key={task._id} task={task} />
                 }) : <div className='no-tasks'>No tasks</div>
             }
             </div>

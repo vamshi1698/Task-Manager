@@ -1,8 +1,10 @@
 import '../App.css'
-import { useRef } from 'react'
-const Task = ({task,setTasks,tasks,setNewTitle,setNewDetails})=>{
+import { useEffect, useRef, useState } from 'react'
+const Task = ({task,setTasks,tasks})=>{
     const taskRef = useRef()
-    
+    const [editmode,setEditmode] = useState()
+    const [editTitle,setEditTitle] = useState(task.title)
+    const [editDetails,setEditDetails] = useState(task.details)
     const deleteTask = async()=>{
         await fetch(`http://localhost:3000/api/deleteTask?id=${task._id}`,{
             method: 'DELETE',
@@ -21,21 +23,35 @@ const Task = ({task,setTasks,tasks,setNewTitle,setNewDetails})=>{
           })
     }
 
-    const editTask = ()=>{
-        if((taskRef.current.classList).contains('popup')){
-            taskRef.current.classList.remove('popup')
-            return;
-        }
-        taskRef.current.classList.add('popup')
+    const updateTask= ()=>{
+        
     }
+
+    useEffect(()=>{
+        if(!editmode){
+                setEditDetails(task.details)
+                setEditTitle(task.title)
+        }
+    },[editmode])
     return(
         <div ref={taskRef} className='task'>
             <div className='task-container'>
                 <h3 className='task-title'>{task.title}</h3>
                 <p className='task-details'>{task.details}</p>
             </div>
-            <div className='buttons'>
-                <i onClick={editTask} className="fa-regular fa-pen-to-square edit edit-mode"></i>
+            {
+                editmode ? 
+                <div className='popup'>
+                    <i className="fa-solid fa-x"  onClick={()=>setEditmode(false)}></i>
+                    <div className='edit-inputs'>
+                        <input type="text" name="title" onChange={(e)=>setEditTitle(e.target.value)} value={editTitle} id="title" />
+                        <textarea name="details" rows={5} id="" value={editDetails} onChange={(e)=>setEditDetails(e.target.value)}></textarea>
+                        <button onClick={updateTask}>Update</button>
+                    </div>
+                </div> : ""
+            }
+            <div className='buttons' >
+                <i onClick={()=>setEditmode(true)} className="fa-regular fa-pen-to-square edit edit-mode"></i>
                 <i className="fa-solid fa-trash-can" onClick={deleteTask}></i>
             </div>
         </div>
