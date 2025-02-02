@@ -12,7 +12,7 @@ const Task = ({task,setTasks,tasks})=>{
             headers:{
               "content-type":"application/json"
             }
-          }).then(()=>{
+          }).then(()=>{~
             setTasks(()=>{
                 console.log(tasks.filter(t=>t._id===task._id))
                 const updatedTasks = tasks.filter(t=>t._id!==task._id)

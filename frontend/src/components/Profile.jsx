@@ -4,8 +4,7 @@ import Task from './Task'
 import '../App.css'
 import Cookies from 'js-cookie' 
 import Login from './Login'
-const Profile = ()=>{
-    const [isLoggedIn,setIsLoggedIn] = useState(true)
+const Profile = ({isLoggedIn,setIsLoggedIn})=>{
     if(!isLoggedIn){
       return <Navigate to='/login' replace />
     }

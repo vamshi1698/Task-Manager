@@ -1,5 +1,8 @@
 import styles from '../styles/Signup.module.css'
-const Signup = ()=>{
+const Signup = ({isLoggedIn,setIsLoggedIn})=>{
+    if(isLoggedIn){
+        return <Navigate to='/' replace />
+    }
     return(
         <div className={styles.container}>
             <div className={styles.signup}>

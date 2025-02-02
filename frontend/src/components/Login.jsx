@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import '../styles/Login.css'
-const Login = ()=>{
+import { Navigate } from 'react-router-dom'
+const Login = ({isLoggedIn,setIsLoggedIn})=>{
     const [username,setUsername] = useState("")
     const [password,setPassword] = useState("")
+    if(isLoggedIn){
+        return <Navigate to='/' replace />
+    }
     const trylogin = async(e)=>{
         e.preventDefault()
         const response = await fetch("http://localhost:3000/api/login",{
@@ -19,6 +23,7 @@ const Login = ()=>{
         if(response){
             const data =await response.json()
             console.log(data)
+            setIsLoggedIn(true)
             location.reload()
         }
     }
