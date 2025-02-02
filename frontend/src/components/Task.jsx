@@ -23,8 +23,23 @@ const Task = ({task,setTasks,tasks})=>{
           })
     }
 
-    const updateTask= ()=>{
-        
+    const updateTask= async()=>{
+        await fetch(`http://localhost:3000/api/edit`,{
+            method:"PUT",
+            credentials:"include",
+            headers:{
+                "content-type":"application/json"
+            },
+            body: JSON.stringify({id: task._id ,details: editDetails,title: editTitle})
+        }).then(async(response)=>{
+            console.log(response)
+            const data= await response.json()
+            const addupdatedtask = (tasks.filter((t)=>t._id!=data._id))
+            setTasks([data,...addupdatedtask])
+        }).catch((e)=>{
+            console.log(e)
+        })
+        setEditmode(false)
     }
 
     useEffect(()=>{
@@ -42,8 +57,8 @@ const Task = ({task,setTasks,tasks})=>{
             {
                 editmode ? 
                 <div className='popup'>
-                    <i className="fa-solid fa-x"  onClick={()=>setEditmode(false)}></i>
                     <div className='edit-inputs'>
+                        <i className="fa-solid fa-x"  onClick={()=>setEditmode(false)}></i>
                         <input type="text" name="title" onChange={(e)=>setEditTitle(e.target.value)} value={editTitle} id="title" />
                         <textarea name="details" rows={5} id="" value={editDetails} onChange={(e)=>setEditDetails(e.target.value)}></textarea>
                         <button onClick={updateTask}>Update</button>

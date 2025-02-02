@@ -108,7 +108,7 @@
   background: #202020a5 !important;
   color: #e81414 !important;
   z-index: 2;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 5vw 5vh 20vw !important;
 }
@@ -118,6 +118,7 @@
   justify-content: space-around;
   align-items:flex-end;
   gap: 1rem;
+  text-align: center;
 }
 .edit-inputs > *{
   padding: 1vw 1vh;
@@ -151,6 +152,10 @@
   color: #202222;
 }
 
+.edit-inputs > input{
+  border-radius: 8px !important;
+  background-color: #3A3A36 !important;
+}
 
 .no-tasks{
   width: 100vw;

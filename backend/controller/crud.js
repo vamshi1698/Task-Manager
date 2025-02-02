@@ -23,14 +23,17 @@ exports.getAllTasks = async(req,res)=>{
 }  
 
 exports.updateTask = async(req,res)=>{
-    const id = req.query.id
-    const {name,details} = req.body
+    const {title,details,id} = req.body
+    console.log(title,details,id)
     if(!title || !details){
         return res.json({message:"title,details are required"})
     }
     try{
-        const updatedTask = await tasks.findOneAndUpdate({_id:id},{name,details},{new:true})
-        return res.status(204).json(updatedTask)
+        const updatedTask = await tasks.findOneAndUpdate({_id:id},{title,details},{new:true})
+        if(!updatedTask){
+            return res.status(203).json({message:"Something went wrong"})
+        }
+        return res.status(200).json(updatedTask)
     }catch(e){
         return res.status(403).json({message:e.message})
     }
