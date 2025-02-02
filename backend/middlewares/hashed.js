@@ -18,10 +18,10 @@ exports.verifyPassword = async(req,res,next)=>{
     if(!profile){
         return res.status(403).json({message : "Signup first"})  
     }
-    const isPassword =bcrypt.compare(password, profile.password)
+    const isPassword =await bcrypt.compare(password, profile.password)
     if(!isPassword){
         return res.status(403).json({message:"wrong password"})
-    }
+2    }
     req.user = profile 
     next()
 }
