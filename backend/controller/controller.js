@@ -4,7 +4,6 @@ exports.signup = async(req,res)=>{
     const {username,email,password} = req.body
     try{
         const userData = await user.create({username,email,password})
-        console.log(userData.password)
         if(userData){
             console.log(userData._id)
             const token = jwt.sign({ id: userData._id }, process.env.SECRETE_KEY)

@@ -39,3 +39,16 @@
     background: transparent;
     border-bottom: 1px solid #383834;
   }
+  .buttons-div{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1%;
+    text-wrap: nowrap;
+  }
+  .buttons-div > button{
+    background-color: transparent;
+    color: #4044ED;
+    text-shadow: 0 8px 32px 0  #4044ED;
+    padding: 1rem;
+  }

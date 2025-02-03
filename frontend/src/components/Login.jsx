@@ -1,11 +1,16 @@
 import { useState } from 'react'
 import '../styles/Login.css'
-import { Navigate } from 'react-router-dom'
+import { Navigate,useNavigate } from 'react-router-dom'
 const Login = ({isLoggedIn,setIsLoggedIn})=>{
+    const navigate = useNavigate()
     const [username,setUsername] = useState("")
     const [password,setPassword] = useState("")
     if(isLoggedIn){
         return <Navigate to='/' replace />
+    }
+    const navigateSignup = (e)=>{
+        e.preventDefault()
+        navigate('/signup')
     }
     const trylogin = async(e)=>{
         e.preventDefault()
@@ -35,7 +40,9 @@ const Login = ({isLoggedIn,setIsLoggedIn})=>{
                     <input type="text" value={username} name="username" onChange={(e)=>setUsername(e.target.value)} id="username" placeholder='username' />
                     <input type="password" value={password} name="password" onChange={(e)=>setPassword(e.target.value)} id="password" placeholder='password' />
                     <button onClick={trylogin} type="submit">Login</button>
-                    <div>
+                    <div className='buttons-div'>
+                        <button>forget password?</button>
+                       <button onClick={navigateSignup}>Signup</button> 
                     </div>
                 </span>
             </form>
