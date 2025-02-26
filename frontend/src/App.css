@@ -152,9 +152,17 @@
   color: #202222;
 }
 
-.edit-inputs > input{
+.edit-inputs > *:not(i){
+  font-family: "Jost";
   border-radius: 8px !important;
-  background-color: #3A3A36 !important;
+  background-color: #dbaf75 !important;
+  color: #000;
+}
+.edit-inputs > button{
+  font-size: 1.5rem;
+  background:  #fd9a31 !important;
+  font-family: "Inter" ;
+  font-weight: 700;
 }
 
 .no-tasks{
@@ -186,6 +194,9 @@
   }
   .header > button{
     font-size: 1rem;
+  }
+  .tasks{
+    grid-template-columns: 1fr;
   }
   .logout{
     padding: 0.5rem;

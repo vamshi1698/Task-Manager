@@ -5,7 +5,6 @@ exports.signup = async(req,res)=>{
     try{
         const userData = await user.create({username,email,password})
         if(userData){
-            console.log(userData._id)
             const token = jwt.sign({ id: userData._id }, process.env.SECRETE_KEY)
             res.cookie('token',token)
             return res.status(201).json(token)
@@ -30,7 +29,6 @@ exports.getProfile = async(req,res)=>{
 exports.login =async (req,res)=>{
     const userData =  req.user
     try{
-        console.log(userData)
         if(userData){
             const token = jwt.sign({ id: userData._id }, process.env.SECRETE_KEY)
             res.cookie('token',token)

@@ -24,7 +24,6 @@ exports.getAllTasks = async(req,res)=>{
 
 exports.updateTask = async(req,res)=>{
     const {title,details,id} = req.body
-    console.log(title,details,id)
     if(!title || !details){
         return res.json({message:"title,details are required"})
     }

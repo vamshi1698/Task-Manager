@@ -30,9 +30,9 @@ const Signup = ({isLoggedIn,setIsLoggedIn})=>{
         <div className={styles.container}>
             <form className={styles.signup}>
                 <h3>Sign up</h3>
-                <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)} name="username" id="username" />
-                <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} name="password" id="password" />
-                <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} name="email" id="email" />
+                <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)} name="username" id="username"  placeholder='username'/>
+                <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} name="password" id="password" placeholder='password'/>
+                <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} name="email" id="email" placeholder='email'/>
                 <div>
                     <button onClick={trysignup}>Signup</button>
                 </div>

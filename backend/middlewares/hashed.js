@@ -3,7 +3,6 @@ const { user } = require('../db/models')
 exports.hashPassword = async (req,res,next)=>{
     const {username,password} = req.body
     const profile = await user.findOne({username})
-    console.log(profile)
     if(profile){
         return res.status(409).json({message:'This username already exist'})
     }

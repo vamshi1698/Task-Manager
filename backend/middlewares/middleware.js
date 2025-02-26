@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 exports.verifyToken =async (req,res,next)=>{
     token = req.cookies.token
-    console.log(token)
     if(!token){
         return res.status(403).json({message:"No token "})
     }
